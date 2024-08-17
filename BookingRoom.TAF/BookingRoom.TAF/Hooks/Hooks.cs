@@ -1,10 +1,12 @@
 ﻿using BoDi;
 using BookingRoom.Core.Configuration;
 using BookingRoom.Core.Utils;
-using BookingRoom.TAF.Drivers;
+using BookingRoom.TAF.Support;
+using BookingRoom.UI.Drivers;
 using Microsoft.Playwright;
 using NUnit.Framework;
-using BrowserType = BookingRoom.TAF.Drivers.BrowserType;
+using TechTalk.SpecFlow.Tracing;
+using BrowserType = BookingRoom.UI.Drivers.BrowserType;
 
 [assembly: Parallelizable(ParallelScope.Fixtures)]
 
@@ -47,6 +49,18 @@ namespace BookingRoom.TAF.Hooks
 
             Page = await Context.NewPageAsync();
             _objectContainer.RegisterInstanceAs(Page);
+        }
+
+
+        [AfterScenario()]
+        public async Task CloseBrowser()
+        {
+            if (_scenarioContext.TestError != null)
+            {
+                await Page.Screenshot(_scenarioContext.ScenarioInfo.Title.ToIdentifier(), AppConfiguration.TestDataFilesFolder);
+            }
+
+            await Browser.DisposeAsync();
         }
     }
 }

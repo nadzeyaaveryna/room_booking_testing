@@ -1,7 +1,6 @@
-﻿using BookingRoom.Core.Configuration;
-using Microsoft.Playwright;
+﻿using Microsoft.Playwright;
 
-namespace BookingRoom.TAF.Drivers
+namespace BookingRoom.UI.Drivers
 {
     public class Driver
     {

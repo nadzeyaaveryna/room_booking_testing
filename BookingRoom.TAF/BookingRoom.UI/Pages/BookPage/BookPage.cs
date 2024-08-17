@@ -1,10 +1,12 @@
-﻿using Microsoft.Playwright;
+﻿using BookingRoom.Core.Configuration;
+using Microsoft.Playwright;
 
 namespace BookingRoom.UI.Pages.BookPage
 {
     public class BookPage : BasePage
     {
-        public override string Url => "https://automationintesting.online/";
+        public override string Url => AppConfiguration.TestSettings.ApplicationUrl;
+
         public BookPage(IPage page) : base(page)
         {
         }

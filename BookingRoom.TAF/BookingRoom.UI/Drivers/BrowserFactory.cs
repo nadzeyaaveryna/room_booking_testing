@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Playwright;
+﻿using Microsoft.Playwright;
 
-namespace BookingRoom.TAF.Drivers
+namespace BookingRoom.UI.Drivers
 {
     /// <summary>
     /// Create instance of browser with particular type 

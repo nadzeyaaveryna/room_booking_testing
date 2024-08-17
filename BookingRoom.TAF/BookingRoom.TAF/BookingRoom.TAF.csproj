@@ -20,10 +20,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Support\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\BookingRoom.Core\BookingRoom.Core.csproj" />
     <ProjectReference Include="..\BookingRoom.UI\BookingRoom.UI.csproj" />
   </ItemGroup>
