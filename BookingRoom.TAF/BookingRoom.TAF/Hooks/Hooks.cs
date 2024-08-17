@@ -3,7 +3,10 @@ using BookingRoom.Core.Configuration;
 using BookingRoom.Core.Utils;
 using BookingRoom.TAF.Drivers;
 using Microsoft.Playwright;
+using NUnit.Framework;
 using BrowserType = BookingRoom.TAF.Drivers.BrowserType;
+
+[assembly: Parallelizable(ParallelScope.Fixtures)]
 
 namespace BookingRoom.TAF.Hooks
 {
@@ -13,7 +16,7 @@ namespace BookingRoom.TAF.Hooks
         public IBrowser Browser;
         public IBrowserContext Context;
         public IPage Page;
-        //public IPlaywright playwright;
+  
         private readonly IObjectContainer _objectContainer;
         private readonly ScenarioContext _scenarioContext;
 
@@ -37,8 +40,11 @@ namespace BookingRoom.TAF.Hooks
             var browserType = AppConfiguration.TestSettings?.BrowserType.ToEnum<BrowserType>();
             var isHeadless = AppConfiguration.TestSettings?.IsHeadless;
 
-            Browser = new Driver(browserType.Value, isHeadless.Value).Browser;
-            Context = await Browser.NewContextAsync();
+            var driver = new Driver(browserType.Value, isHeadless.Value);
+
+            Browser = driver.Browser;
+            Context = driver.BrowserContext;
+
             Page = await Context.NewPageAsync();
             _objectContainer.RegisterInstanceAs(Page);
         }

@@ -6,13 +6,18 @@ namespace BookingRoom.TAF.Drivers
     public class Driver
     {
         private readonly Task<IBrowser> _browser;
+        private readonly Task<IBrowserContext> _browserContext;
 
         public Driver(BrowserType browserType, bool isHeadless)
         {
             _browser = Task.Run(() => CreateBrowser(browserType, isHeadless));
+            _browserContext = Task.Run(CreateBrowserContext);
         }
 
         public IBrowser Browser => _browser.Result;
+
+        public IBrowserContext BrowserContext => _browserContext.Result;
+
 
         public async Task<IPlaywright> CreatePlaywright() => await Playwright.CreateAsync();
 
@@ -20,7 +25,7 @@ namespace BookingRoom.TAF.Drivers
             new()
             {
                 Headless = isHeadless,
-                Args = new List<string> { DriverArgs.MaximizedParamName }
+                Args = new [] { DriverArgs.MaximizedParamName }
             };
 
         public async Task<IBrowser> CreateBrowser(BrowserType browserType, bool isHeadless)
@@ -36,5 +41,11 @@ namespace BookingRoom.TAF.Drivers
                 _ => throw new ArgumentOutOfRangeException(nameof(browserType), browserTypeLaunchOptions, null)
             });
         }
+
+        public async Task<IBrowserContext> CreateBrowserContext() =>
+            await Browser.NewContextAsync(new BrowserNewContextOptions
+            {
+                ViewportSize = ViewportSize.NoViewport
+            });
     }
 }
