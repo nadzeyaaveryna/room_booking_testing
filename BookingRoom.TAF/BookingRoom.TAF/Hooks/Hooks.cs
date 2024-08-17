@@ -14,7 +14,7 @@ namespace BookingRoom.TAF.Hooks
         public IBrowser browser;
         public IBrowserContext context;
         public IPage page;
-        public IPlaywright playwright;
+        //public IPlaywright playwright;
         private readonly IObjectContainer _objectContainer;
         private readonly ScenarioContext _scenarioContext;
 
@@ -37,7 +37,7 @@ namespace BookingRoom.TAF.Hooks
         {
            // playwright = await Playwright.CreateAsync();
             BrowserTypeLaunchOptions typeLaunchOptions = new BrowserTypeLaunchOptions { Headless = false };
-            browser = await new Driver().CreateBrowser(BrowserType.Chrome, typeLaunchOptions);
+            browser = new Driver(BrowserType.Chrome, typeLaunchOptions).Browser;
             context = await browser.NewContextAsync();
             page = await context.NewPageAsync();
             _objectContainer.RegisterInstanceAs(page);
