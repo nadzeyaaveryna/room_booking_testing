@@ -1,34 +1,34 @@
-﻿using Microsoft.Playwright;
+﻿using BookingRoom.Core.Configuration;
+using Microsoft.Playwright;
 using System.Threading.Tasks;
 
 namespace BookingRoom.TAF.Drivers
 {
     public class Driver
     {
-        public Driver() { }
-
-        public Driver(BrowserType browserType, BrowserTypeLaunchOptions browserTypeLaunchOptions)
-        {
-            _browser = Task.Run(() => CreateBrowser(browserType, browserTypeLaunchOptions));
-        }
-
         private readonly Task<IBrowser> _browser;
+
+        public Driver(BrowserType browserType)
+        {
+            _browser = Task.Run(() => CreateBrowser(browserType));
+        }
 
         public IBrowser Browser => _browser.Result;
 
-        public async Task<IPlaywright> CreatePlaywright()
-        {
-           return await Playwright.CreateAsync();
-        }
+        public async Task<IPlaywright> CreatePlaywright() => await Playwright.CreateAsync();
 
-        public async Task<IBrowser> CreateBrowser(BrowserType browserType, BrowserTypeLaunchOptions browserTypeLaunchOptions)
-        {
-            //var browserTypeLaunchOptions = new BrowserTypeLaunchOptions
-            //{
-            //    Headless = false,
-            //};
+        public BrowserTypeLaunchOptions SetUpLaunchOptions() =>
+            new()
+            {
+                Headless = AppConfiguration.TestSettings?.IsHeadless,
+                Args = new List<string> { DriverArgs.MaximizedParamName }
+            };
 
+        public async Task<IBrowser> CreateBrowser(BrowserType browserType)
+        {
             var playwright = await CreatePlaywright();
+            var browserTypeLaunchOptions = SetUpLaunchOptions();
+
             return await (browserType switch
             {
                 BrowserType.Chrome => playwright.CreateChromiumBrowser(browserTypeLaunchOptions),

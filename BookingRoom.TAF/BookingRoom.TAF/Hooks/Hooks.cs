@@ -1,9 +1,8 @@
 ﻿using BoDi;
 using BookingRoom.Core.Configuration;
+using BookingRoom.Core.Utils;
 using BookingRoom.TAF.Drivers;
 using Microsoft.Playwright;
-using System.Configuration;
-using static System.Net.Mime.MediaTypeNames;
 using BrowserType = BookingRoom.TAF.Drivers.BrowserType;
 
 namespace BookingRoom.TAF.Hooks
@@ -35,9 +34,9 @@ namespace BookingRoom.TAF.Hooks
         [BeforeScenario()]
         public async Task CreateBrowser()
         {
-           // playwright = await Playwright.CreateAsync();
-            BrowserTypeLaunchOptions typeLaunchOptions = new BrowserTypeLaunchOptions { Headless = false };
-            browser = new Driver(BrowserType.Chrome, typeLaunchOptions).Browser;
+            var browserType = AppConfiguration.TestSettings?.BrowserType.ToEnum<BrowserType>();
+
+            browser = new Driver(browserType.Value).Browser;
             context = await browser.NewContextAsync();
             page = await context.NewPageAsync();
             _objectContainer.RegisterInstanceAs(page);

@@ -2,10 +2,10 @@
 {
     public class AppSettingsEntity
     {
-        public static string BrowserType { get; set; }
+        public string BrowserType { get; set; }
 
-        public static string ApplicationUrl { get; set; }
+        public string ApplicationUrl { get; set; }
 
-        public static bool IsHeadless { get; set; }
+        public bool IsHeadless { get; set; }
     }
 }
