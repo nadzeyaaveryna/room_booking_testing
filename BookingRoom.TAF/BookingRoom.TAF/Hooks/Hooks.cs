@@ -10,9 +10,9 @@ namespace BookingRoom.TAF.Hooks
     [Binding]
     public class Hooks
     {
-        public IBrowser browser;
-        public IBrowserContext context;
-        public IPage page;
+        public IBrowser Browser;
+        public IBrowserContext Context;
+        public IPage Page;
         //public IPlaywright playwright;
         private readonly IObjectContainer _objectContainer;
         private readonly ScenarioContext _scenarioContext;
@@ -35,11 +35,12 @@ namespace BookingRoom.TAF.Hooks
         public async Task CreateBrowser()
         {
             var browserType = AppConfiguration.TestSettings?.BrowserType.ToEnum<BrowserType>();
+            var isHeadless = AppConfiguration.TestSettings?.IsHeadless;
 
-            browser = new Driver(browserType.Value).Browser;
-            context = await browser.NewContextAsync();
-            page = await context.NewPageAsync();
-            _objectContainer.RegisterInstanceAs(page);
+            Browser = new Driver(browserType.Value, isHeadless.Value).Browser;
+            Context = await Browser.NewContextAsync();
+            Page = await Context.NewPageAsync();
+            _objectContainer.RegisterInstanceAs(Page);
         }
     }
 }

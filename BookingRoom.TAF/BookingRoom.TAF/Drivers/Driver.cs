@@ -1,6 +1,5 @@
 ﻿using BookingRoom.Core.Configuration;
 using Microsoft.Playwright;
-using System.Threading.Tasks;
 
 namespace BookingRoom.TAF.Drivers
 {
@@ -8,26 +7,26 @@ namespace BookingRoom.TAF.Drivers
     {
         private readonly Task<IBrowser> _browser;
 
-        public Driver(BrowserType browserType)
+        public Driver(BrowserType browserType, bool isHeadless)
         {
-            _browser = Task.Run(() => CreateBrowser(browserType));
+            _browser = Task.Run(() => CreateBrowser(browserType, isHeadless));
         }
 
         public IBrowser Browser => _browser.Result;
 
         public async Task<IPlaywright> CreatePlaywright() => await Playwright.CreateAsync();
 
-        public BrowserTypeLaunchOptions SetUpLaunchOptions() =>
+        public BrowserTypeLaunchOptions SetUpLaunchOptions(bool isHeadless) =>
             new()
             {
-                Headless = AppConfiguration.TestSettings?.IsHeadless,
+                Headless = isHeadless,
                 Args = new List<string> { DriverArgs.MaximizedParamName }
             };
 
-        public async Task<IBrowser> CreateBrowser(BrowserType browserType)
+        public async Task<IBrowser> CreateBrowser(BrowserType browserType, bool isHeadless)
         {
             var playwright = await CreatePlaywright();
-            var browserTypeLaunchOptions = SetUpLaunchOptions();
+            var browserTypeLaunchOptions = SetUpLaunchOptions(isHeadless);
 
             return await (browserType switch
             {
