@@ -6,6 +6,7 @@ namespace BookingRoom.Core.Utils
     public static class DateTimeHelper
     {
         private static ILogger Logger => LoggerInstance.Instance();
+        private static readonly Random Random = new();
 
         public static DateTime ParseDateTime(this string date, string format)
         {
@@ -19,6 +20,15 @@ namespace BookingRoom.Core.Utils
                 Logger.Error(ex);
                 throw;
             }
+        }
+
+        public static DateTime GetRandomDateTime()
+        {
+            var time = DateTime.Today;
+            time = time.AddDays(Random.Next(1, 170));
+            time = time.AddHours(Random.Next(9, 20));
+
+            return time;
         }
     }
 }

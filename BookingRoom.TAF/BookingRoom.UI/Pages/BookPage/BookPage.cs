@@ -37,14 +37,14 @@ namespace BookingRoom.UI.Pages.BookPage
                     .ConfigureAwait(false);
             }
 
-            var roomsElement = await Page.Locator("xpath=//*[@class = 'row hotel-room-info']").AllAsync();
+            var roomsElement = await Page.Locator("xpath=//div[./*[@class = 'row hotel-room-info']]").AllAsync();
 
 
                 var roomPageElements = new List<RoomElement>();
 
                 foreach (var element in roomsElement)
                 {
-                    roomPageElements.Add(new RoomElement(element));
+                    roomPageElements.Add(new RoomElement(element, Page));
                 }
 
                 return roomPageElements;

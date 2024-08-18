@@ -6,6 +6,7 @@ using BookingRoom.UI.Pages.BookPage;
 using Microsoft.Playwright;
 using NUnit.Framework;
 using System;
+using BookingRoom.Core.BusinessObjects.TimeSlot;
 using BookingRoom.Core.Utils;
 using BookingRoom.Core.Utils.TestsContext;
 

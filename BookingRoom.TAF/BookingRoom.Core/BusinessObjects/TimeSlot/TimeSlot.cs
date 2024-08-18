@@ -1,4 +1,4 @@
-﻿namespace BookingRoom.Core.BusinessObjects
+﻿namespace BookingRoom.Core.BusinessObjects.TimeSlot
 {
     public class TimeSlot
     {

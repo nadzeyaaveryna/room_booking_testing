@@ -191,6 +191,9 @@ this.ScenarioInitialize(scenarioInfo);
 #line 21
  testRunner.And("I click ‘Book this room’ button for selected room", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
+#line 22
+ testRunner.And("Select two night three day stay on calendar in current month", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
             }
             this.ScenarioCleanup();
         }

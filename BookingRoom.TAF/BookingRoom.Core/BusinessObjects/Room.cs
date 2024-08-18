@@ -12,12 +12,12 @@
 
         public bool HasWheelchairAccess { get; set; }
 
-        public List<TimeSlot> BookedSlots { get; set; }
+        public List<TimeSlot.TimeSlot> BookedSlots { get; set; }
 
         public Room()
         {
             Amenities = new List<string>();
-            BookedSlots = new List<TimeSlot>();
+            BookedSlots = new List<TimeSlot.TimeSlot>();
         }
     }
 }
