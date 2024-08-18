@@ -6,7 +6,6 @@ namespace BookingRoom.Core.Configuration
     {
         public static AppSettingsEntity? TestSettings { get; set; }
 
-
         /// <summary>
         /// Gets test data files folder
         /// </summary>

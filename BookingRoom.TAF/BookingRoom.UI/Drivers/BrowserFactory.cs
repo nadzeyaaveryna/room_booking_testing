@@ -7,19 +7,13 @@ namespace BookingRoom.UI.Drivers
     /// </summary>
     public static class BrowserFactory
     {
-        public static async Task<IBrowser> CreateChromiumBrowser(this IPlaywright playwright, BrowserTypeLaunchOptions options)
-        {
-            return await playwright.Chromium.LaunchAsync(options);
-        }
+        public static async Task<IBrowser> CreateChromiumBrowser(this IPlaywright playwright, BrowserTypeLaunchOptions options) => 
+            await playwright.Chromium.LaunchAsync(options);
 
-        public static async Task<IBrowser> CreateFirefoxBrowser(this IPlaywright playwright, BrowserTypeLaunchOptions options)
-        {
-            return await playwright.Firefox.LaunchAsync(options);
-        }
+        public static async Task<IBrowser> CreateFirefoxBrowser(this IPlaywright playwright, BrowserTypeLaunchOptions options) => 
+            await playwright.Firefox.LaunchAsync(options);
 
-        public static async Task<IBrowser> CreateSafariBrowser(this IPlaywright playwright, BrowserTypeLaunchOptions options)
-        {
-            return await playwright.Webkit.LaunchAsync(options);
-        }
+        public static async Task<IBrowser> CreateSafariBrowser(this IPlaywright playwright, BrowserTypeLaunchOptions options) => 
+            await playwright.Webkit.LaunchAsync(options);
     }
 }

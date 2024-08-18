@@ -24,7 +24,12 @@ namespace BookingRoom.TAF.StepDefinitions
         [When(@"I find room and click ‘Book this room’ button")]
         public async Task WhenIFindRoomAndClickBookThisRoomButton()
         {
-            await _bookPage.ClickBookThisRoomButton();
+           var rooms =  _bookPage.GetRoomsList().Result;
+
+           var firstRoom = rooms.FirstOrDefault();
+              await firstRoom?.ClickBookButton();
+
+            //await _bookPage.ClickBookThisRoomButton();
         }
 
         [When(@"Select two night \(three day\) stay on calendar")]

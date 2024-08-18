@@ -17,7 +17,6 @@ namespace BookingRoom.UI.Drivers
 
         public IBrowserContext BrowserContext => _browserContext.Result;
 
-
         public async Task<IPlaywright> CreatePlaywright() => await Playwright.CreateAsync();
 
         public BrowserTypeLaunchOptions SetUpLaunchOptions(bool isHeadless) =>
