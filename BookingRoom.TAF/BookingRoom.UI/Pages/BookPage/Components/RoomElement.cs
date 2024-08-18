@@ -5,7 +5,7 @@ namespace BookingRoom.UI.Pages.BookPage.Components
 {
     public class RoomElement
     {
-        private ILocator _rootElement;
+        private readonly ILocator _rootElement;
 
         public RoomElement(ILocator rootElement)
         {
@@ -18,6 +18,11 @@ namespace BookingRoom.UI.Pages.BookPage.Components
         private ILocator? WheelchairAccessElement => _rootElement.Locator(".wheelchair");
         private IEnumerable<ILocator> AmenitiesElements => _rootElement.Locator("ul li").AllAsync().Result;
         private ILocator? BookButton => _rootElement.Locator(".openBooking");
+
+        public CalendarElement Calendar => new CalendarElement(_rootElement.Locator(".rbc-calendar"));
+
+
+
 
         public async Task<string> GetImageUrl() => await ImageElement.GetAttributeAsync("src");
 

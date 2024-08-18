@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using BookingRoom.Core.Utils.Logger;
+using System.Reflection;
 
 namespace BookingRoom.Core.Configuration
 {
@@ -12,5 +13,11 @@ namespace BookingRoom.Core.Configuration
         /// <returns>folder path</returns>
         public static string TestDataFilesFolder =>
             Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!, "TestDataFiles");
+
+        /// <summary>
+        /// Represents Logger type needed
+        /// Logger initializer gets type of logger presented in config and uses it for logging
+        /// </summary>
+        public static NLogLogger Logger => new();
     }
 }

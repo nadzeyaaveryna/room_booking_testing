@@ -1,12 +1,11 @@
 ﻿using BookingRoom.Core.Configuration;
+using BookingRoom.Core.Constants;
 using Microsoft.Playwright;
 
 namespace BookingRoom.TAF.Support
 {
     public static class ScreenshotHelper
     {
-        public const string ScreenshotFullDateTimeFormat = "yyyy-MM-ddTHH-mm-ss";
-
         /// <summary>
         /// Takes screenshot
         /// </summary>
@@ -17,7 +16,7 @@ namespace BookingRoom.TAF.Support
         {
             directory ??= Directory.GetCurrentDirectory();
 
-           var timeStamp = DateTime.UtcNow.ToString(ScreenshotFullDateTimeFormat);
+           var timeStamp = DateTime.UtcNow.ToString(DateTimeFormats.ScreenshotFullDateTimeFormat);
             var title = await page.TitleAsync();
             var fileName = $"{timeStamp}_{title}-{testName}.png";
 

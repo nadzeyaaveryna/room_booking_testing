@@ -26,18 +26,29 @@ namespace BookingRoom.UI.Pages.BookPage
 
         public async Task<List<RoomElement>> GetRoomsList()
         {
-            //await Page.WaitForSelectorAsync("//*[@class='row room-header']/following-sibling::div", new() {Timeout = 6});
-            var roomsElement = Page.Locator("xpath=//*[@class = 'row hotel-room-info']").AllAsync();
-
-
-            var roomPageElements = new List<RoomElement>();
-            foreach (var element in roomsElement.Result)
+            if (Page != null)
             {
-                roomPageElements.Add(new RoomElement(element));
+                await Page.WaitForSelectorAsync("xpath=//*[@class = 'row hotel-room-info']",
+                        new()
+                        {
+                            Timeout = 3000,
+                            State = WaitForSelectorState.Visible
+                        })
+                    .ConfigureAwait(false);
             }
 
-            return roomPageElements;
-        }
+            var roomsElement = await Page.Locator("xpath=//*[@class = 'row hotel-room-info']").AllAsync();
+
+
+                var roomPageElements = new List<RoomElement>();
+
+                foreach (var element in roomsElement)
+                {
+                    roomPageElements.Add(new RoomElement(element));
+                }
+
+                return roomPageElements;
+            }
 
         public async Task ClickBookThisRoomButton() => await BookButton.ClickAsync();
     }

@@ -15,10 +15,12 @@ namespace BookingRoom.TAF.Hooks
     [Binding]
     public class Hooks
     {
+        public IPlaywright Playwright;
         public IBrowser Browser;
         public IBrowserContext Context;
         public IPage Page;
-  
+        public IAPIRequestContext RequestContext;
+
         private readonly IObjectContainer _objectContainer;
         private readonly ScenarioContext _scenarioContext;
 
@@ -44,11 +46,15 @@ namespace BookingRoom.TAF.Hooks
 
             var driver = new Driver(browserType.Value, isHeadless.Value);
 
+            Playwright = driver.PlaywrightInstance;
             Browser = driver.Browser;
             Context = driver.BrowserContext;
+            RequestContext = await driver.PlaywrightInstance.APIRequest.NewContextAsync();
 
             Page = await Context.NewPageAsync();
+
             _objectContainer.RegisterInstanceAs(Page);
+            _objectContainer.RegisterInstanceAs(RequestContext);
         }
 
 
