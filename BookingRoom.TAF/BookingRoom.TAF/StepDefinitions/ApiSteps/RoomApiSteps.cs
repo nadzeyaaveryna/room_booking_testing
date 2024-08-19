@@ -1,14 +1,12 @@
 ﻿using BoDi;
 using BookingRoom.API.ApiControllers;
 using BookingRoom.Core.BusinessObjects;
-using BookingRoom.Core.Constants;
-using BookingRoom.UI.Pages.BookPage;
-using Microsoft.Playwright;
-using NUnit.Framework;
-using System;
 using BookingRoom.Core.BusinessObjects.TimeSlot;
+using BookingRoom.Core.Constants;
 using BookingRoom.Core.Utils;
 using BookingRoom.Core.Utils.TestsContext;
+using Microsoft.Playwright;
+using NUnit.Framework;
 
 namespace BookingRoom.TAF.StepDefinitions.ApiSteps
 {

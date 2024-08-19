@@ -34,5 +34,14 @@ namespace BookingRoom.TAF.StepDefinitions
             await roomElement.Calendar.SelectDate(newSlot.StartDate, newSlot.EndDate);
 
         }
+
+        [When(@"Click on ‘Book’ button on room form")]
+        public async Task WhenClickOnBookButtonOnRoomForm()
+        {
+            var roomElement = TestContextVariable.RoomElement.Get<RoomElement>();
+
+            await roomElement.BookingForm.ClickBookButton();
+        }
+
     }
 }

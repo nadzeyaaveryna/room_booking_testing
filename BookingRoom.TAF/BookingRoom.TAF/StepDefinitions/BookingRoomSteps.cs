@@ -59,15 +59,11 @@ namespace BookingRoom.TAF.StepDefinitions
         {
             var rooms = await _bookPage.GetRoomsList();
 
-            Assert.AreEqual(rooms.Count == 0, !isPresent, $"At least one room should be {isPresent.ToString()} is the booking list.");
+            Assert.That(rooms.Count == 0, Is.EqualTo(!isPresent), $"At least one room should be {isPresent.ToString()} is the booking list.");
         }
 
    
-        [When(@"Input personal details into form")]
-        public void WhenInputPersonalDetailsIntoForm()
-        {
-            throw new PendingStepException();
-        }
+ 
 
         [When(@"Click on ‘Book this room’ button")]
         public void WhenClickOnBookThisRoomButton()

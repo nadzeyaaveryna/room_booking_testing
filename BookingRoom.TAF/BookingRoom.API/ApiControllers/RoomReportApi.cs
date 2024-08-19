@@ -15,7 +15,7 @@ namespace BookingRoom.API.ApiControllers
             _requestContext = requestContext;
         }
 
-        public async Task<RoomReport> GetRoomReportAsync(int roomId)
+        public async Task<RoomReport?> GetRoomReportAsync(int roomId)
         {
             var response = await _requestContext.GetAsync(ReportRoomUrl(roomId));
 

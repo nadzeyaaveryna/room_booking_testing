@@ -18,7 +18,7 @@ namespace BookingRoom.UI.Pages.BookPage.Components
 
         public CalendarElement Calendar => new CalendarElement(_rootElement.Locator(".rbc-calendar"), _page);
 
-
+        public BookingFormElement BookingForm => new BookingFormElement(_rootElement.Locator("xpath=//*[contains(@class, 'col-sm')][./*[contains(@class, 'room-booking-form')]]"), _page);
 
 
         public async Task<string> GetImageUrl() => await ImageElement.GetAttributeAsync("src");

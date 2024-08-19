@@ -14,6 +14,8 @@
 
         public List<TimeSlot.TimeSlot> BookedSlots { get; set; }
 
+        public Person.Person PersonBookedTheRoom { get; set; }
+
         public Room()
         {
             Amenities = new List<string>();
