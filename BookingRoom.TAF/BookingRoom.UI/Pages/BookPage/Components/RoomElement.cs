@@ -3,16 +3,10 @@ using Microsoft.Playwright;
 
 namespace BookingRoom.UI.Pages.BookPage.Components
 {
-    public class RoomElement
+    public class RoomElement : BaseElement
     {
-        private readonly ILocator _rootElement;
-
-        private readonly IPage _page;
-
-        public RoomElement(ILocator rootElement, IPage page)
+        public RoomElement(ILocator rootElement, IPage page) : base(rootElement, page)
         {
-            _page = page;
-            _rootElement = rootElement;
         }
 
         private ILocator ImageElement => _rootElement.Locator(".hotel-img");
@@ -63,7 +57,6 @@ namespace BookingRoom.UI.Pages.BookPage.Components
 
             return room;
         }
-
 
     }
 }

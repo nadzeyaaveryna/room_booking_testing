@@ -5,15 +5,10 @@ using System;
 
 namespace BookingRoom.UI.Pages.BookPage.Components
 {
-    public class CalendarElement
+    public class CalendarElement : BaseElement
     {
-        private readonly ILocator _rootElement;
-        private readonly IPage _page;
-
-        public CalendarElement(ILocator rootElement, IPage page)
+        public CalendarElement(ILocator rootElement, IPage page) : base(rootElement, page)
         {
-            _page = page;
-            _rootElement = rootElement;
         }
 
         private ILocator TodayButton => _rootElement.GetByRole(AriaRole.Button, new() { Name = "Today" });
