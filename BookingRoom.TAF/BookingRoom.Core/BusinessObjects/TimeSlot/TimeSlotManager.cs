@@ -28,11 +28,41 @@
                     DateTime potentialEndDate = currentDay.AddDays(timeSlotDays - 1);
                     if (potentialEndDate <= endOfThisMonth && !IsOverlappingWithAnySlot(sortedBookedSlots, currentDay, potentialEndDate))
                     {
-                        return new TimeSlot(currentDay, potentialEndDate);
+                        return new TimeSlot(currentDay, potentialEndDate) {IsBookedInTest = true};
                     }
                 }
 
                 currentDay = currentDay.AddDays(1);
+            }
+
+            return null;
+        }
+
+        public TimeSlot FindAvailablePastSlot(int timeSlotDays)
+        {
+            DateTime currentDate = DateTime.Now.Date;
+            DateTime currentDay = currentDate.AddMonths(-1); 
+
+            var sortedBookedSlots = BookedSlots.Where(slot => slot.EndDate <= currentDate)
+                .OrderByDescending(slot => slot.StartDate)
+                .ToList();
+
+            // Continue backward in time
+            while (currentDay >= DateTime.MinValue)
+            {
+                bool isOverlapping = sortedBookedSlots.Any(slot =>
+                    slot.StartDate <= currentDay && slot.EndDate >= currentDay);
+
+                if (!isOverlapping)
+                {
+                    DateTime potentialEndDate = currentDay.AddDays(-timeSlotDays + 1);
+                    if (potentialEndDate >= DateTime.MinValue && !IsOverlappingWithAnySlot(sortedBookedSlots, potentialEndDate, currentDay))
+                    {
+                        return new TimeSlot(potentialEndDate, currentDay) { IsBookedInTest = true };
+                    }
+                }
+
+                currentDay = currentDay.AddDays(-1); // Move back a day
             }
 
             return null;

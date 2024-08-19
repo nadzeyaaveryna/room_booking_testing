@@ -40,5 +40,18 @@ namespace BookingRoom.TAF.StepDefinitions.ApiSteps
 
             TestContextVariable.Room.Set(room);
         }
+
+        [When("Retrieve selected room details")]
+        public async Task WhenRetrieveAvailableRooms()
+        {
+            var room = TestContextVariable.Room.Get<Room>();
+            var apiContext = _objectContainer.Resolve<IAPIRequestContext>();
+
+            var rooms = await new RoomApi(apiContext).GetRoomReportAsync();
+            if (rooms == null) throw new ArgumentNullException(nameof(rooms));
+
+            TestContextVariable.ExpectedRoom.Set(rooms.RoomsList.First(el => el.RoomId.Equals(room.Index + 1)));
+        }
+
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.Playwright;
+﻿using BookingRoom.UI.Pages.BookPage.Components;
+using Microsoft.Playwright;
 
 namespace BookingRoom.UI.Pages
 {
@@ -13,5 +14,23 @@ namespace BookingRoom.UI.Pages
             _rootElement = rootElement;
         }
 
+        public async Task<bool> IsElementDisplayed()
+        {
+            try
+            {
+                await _rootElement.WaitForAsync(new LocatorWaitForOptions()
+                {
+                    State = WaitForSelectorState.Visible,
+                    Timeout = 500
+                });
+
+            }
+            catch (TimeoutException ex)
+            {
+            }
+
+
+            return await _rootElement.IsVisibleAsync();
+        }
     }
 }

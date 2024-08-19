@@ -9,7 +9,7 @@ namespace BookingRoom.UI.Pages.BookPage
         {
         }
 
-        protected override ILocator RootElement => RootElement.Locator(".ReactModal__Content--after-open");
+        protected override ILocator RootElement => Page.Locator(".ReactModal__Content--after-open");
 
         private ILocator BookingConfirmationStatusElement => RootElement.Locator("h3");
 
@@ -21,19 +21,19 @@ namespace BookingRoom.UI.Pages.BookPage
 
         public async Task<string> GetBookingConfirmationStatus()
         {
-            var headerText = await BookingConfirmationStatusElement.InnerTextAsync();
+            var headerText = await BookingConfirmationStatusElement.InnerTextAsync(new LocatorInnerTextOptions() {Timeout = 2000});
             return headerText;
         }
 
         public async Task<string> GetBookingConfirmationMessage()
         {
-            var messageText = await BookingConfirmationMessageElement.InnerTextAsync();
+            var messageText = await BookingConfirmationMessageElement.InnerTextAsync(new LocatorInnerTextOptions() { Timeout = 2000 });
             return messageText;
         }
 
         public async Task<string> GetBookingConfirmationDates()
         {
-            var dates = await BookingConfirmationDatesElement.InnerTextAsync();
+            var dates = await BookingConfirmationDatesElement.InnerTextAsync(new LocatorInnerTextOptions() { Timeout = 2000 });
             return dates;
         }
 

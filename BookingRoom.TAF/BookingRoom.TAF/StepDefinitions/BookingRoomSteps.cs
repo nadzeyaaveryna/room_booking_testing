@@ -1,4 +1,4 @@
-using BoDi;
+using BookingRoom.API.Responses;
 using BookingRoom.Core.BusinessObjects;
 using BookingRoom.Core.Utils.TestsContext;
 using BookingRoom.UI.Pages.BookPage;
@@ -13,13 +13,11 @@ namespace BookingRoom.TAF.StepDefinitions
     {
         private readonly IPage _page;
         private readonly BookPage _bookPage;
-        private readonly IObjectContainer _objectContainer;
 
-        public BookingRoomSteps(IPage page, IObjectContainer objectContainer)
+        public BookingRoomSteps(IPage page)
         {
             _page = page;
             _bookPage = new BookPage(_page);
-            _objectContainer = objectContainer;
         }
 
         [Given(@"I navigate to booking application")]
@@ -62,19 +60,22 @@ namespace BookingRoom.TAF.StepDefinitions
             Assert.That(rooms.Count == 0, Is.EqualTo(!isPresent), $"At least one room should be {isPresent.ToString()} is the booking list.");
         }
 
-   
- 
-
-        [When(@"Click on ‘Book this room’ button")]
-        public void WhenClickOnBookThisRoomButton()
+        [Then("Check that room details are correct")]
+        public void ThenCheckThatNecessaryElementsPresentOnRoomCard()
         {
-            throw new PendingStepException();
+            var roomElement = TestContextVariable.RoomElement.Get<RoomElement>();
+            var expectedRoom = TestContextVariable.ExpectedRoom.Get<OneRoom>();
+
+            Assert.Multiple( async () =>
+            {
+                Assert.That(await roomElement.GetType(), Is.EqualTo(expectedRoom.Type), "Room type is incorrect.");
+                Assert.That(await roomElement.GetDescription(), Is.EqualTo(expectedRoom.Description), "Room description is incorrect.");
+                Assert.That(await roomElement.GetAmenities(), Is.EqualTo(expectedRoom.Features), "Room features are incorrect.");
+                Assert.That(await roomElement.HasWheelchairAccess(), Is.EqualTo(expectedRoom.Accessible), "Room accessibility is incorrect.");
+                Assert.That(await roomElement.GetImageUrl(), Is.EqualTo(expectedRoom.Image), "Room image is incorrect.");
+            });
+
         }
 
-        [Then(@"I check that ‘Book Successful’ dialog appears with correct booking date")]
-        public void ThenICheckThatBookSuccessfulDialogAppearsWithCorrectBookingDate()
-        {
-            throw new PendingStepException();
-        }
     }
 }

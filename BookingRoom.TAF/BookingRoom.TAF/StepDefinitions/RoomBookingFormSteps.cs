@@ -38,5 +38,22 @@ namespace BookingRoom.TAF.StepDefinitions
             await roomElement.BookingForm.SetEmail(roomPersonBookedTheRoom.Email);
             await roomElement.BookingForm.SetPhone(roomPersonBookedTheRoom.Phone);
         }
+
+
+        [When(@"Click on ‘Book’ button on room form")]
+        public async Task WhenClickOnBookButtonOnRoomForm()
+        {
+            var roomElement = TestContextVariable.RoomElement.Get<RoomElement>();
+
+            await roomElement.BookingForm.ClickBookButton();
+        }
+
+        [When(@"Click on ‘Cancel’ button on room form")]
+        public async Task WhenClickOnCancelButtonOnRoomForm()
+        {
+            var roomElement = TestContextVariable.RoomElement.Get<RoomElement>();
+
+            await roomElement.BookingForm.ClickCancelButton();
+        }
     }
 }

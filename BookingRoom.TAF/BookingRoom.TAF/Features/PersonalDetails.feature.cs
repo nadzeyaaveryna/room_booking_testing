@@ -28,7 +28,7 @@ namespace BookingRoom.TAF.Features
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "BookingRoom.feature"
+#line 1 "PersonalDetails.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]

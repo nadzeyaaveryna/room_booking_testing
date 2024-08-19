@@ -15,6 +15,20 @@ namespace BookingRoom.UI.Pages
 
         public async Task<bool> IsModalDisplayed()
         {
+            try
+            {
+                await RootElement.WaitForAsync(new LocatorWaitForOptions()
+                {
+                    State = WaitForSelectorState.Visible,
+                    Timeout = 3000
+                });
+
+            }
+            catch (TimeoutException ex)
+            {
+            }
+
+
             return await RootElement.IsVisibleAsync();
         }
     }

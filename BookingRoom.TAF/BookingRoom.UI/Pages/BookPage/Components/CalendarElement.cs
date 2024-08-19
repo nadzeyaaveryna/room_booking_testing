@@ -27,20 +27,30 @@ namespace BookingRoom.UI.Pages.BookPage.Components
         private ILocator DayCell(int day) =>
             _rootElement.Locator(
                 $"xpath=//*[@role='cell'][.//button[@role='cell' and text()='{day.ToString()}' and not(ancestor::*[contains(@class, 'rbc-off-range')])]]");
-        
-        
+
+        private ILocator GetOffRangeDayCell(int day) => _rootElement.Locator($"xpath=//*[@class='rbc-date-cell rbc-off-range']//button[text()='{day}']");
+
+
+        private ILocator GetSelectedSLotByText(string text) => _rootElement.Locator($"xpath=//*[@class='rbc-event-content'][text()='{text}']");
+
+
+        public async Task<string> GetMonthSpanText() => await MonthSpan.TextContentAsync();
+
         public async Task<DateTime> GetCalendarMonth(string format = DateTimeFormats.DateFullMonthYearFormatFormat)
         {
-            var elementText = await MonthSpan.TextContentAsync();
+            var elementText = await GetMonthSpanText();
 
             return elementText.ParseDateTime(format);
         }
 
+        public async Task ClickTodayButton() => await TodayButton.ClickAsync();
+
+        public async Task ClickBackButton() => await BackButton.ClickAsync();
+
+        public async Task ClickNextButton() => await NextButton.ClickAsync();
+
         public async Task SelectDate(DateTime startDate, DateTime endDate)
         {
-            var expectedStartDay = startDate.Day;
-            var expectedEndDay = endDate.Day;
-
             await NavigateToMonth(startDate);
 
             if(startDate.Month == endDate.Month)
@@ -67,10 +77,6 @@ namespace BookingRoom.UI.Pages.BookPage.Components
             }
         }
 
-        public void GetSelectedSlots()
-        {
-        }
-
         private async Task SelectDateWithinSameMonth(int startDay, int endDay)
         {
             var startDayLocator = DayCell(startDay);
@@ -83,8 +89,8 @@ namespace BookingRoom.UI.Pages.BookPage.Components
 
         private async Task SelectDateAcrossDifferentMonths(DateTime startDate, DateTime endDate)
         {
-            int endOfMonthDay = DateTime.DaysInMonth(startDate.Year, startDate.Month);
-            int startOfNextMonthDay = 1;
+            var endOfMonthDay = DateTime.DaysInMonth(startDate.Year, startDate.Month);
+            var startOfNextMonthDay = 1;
 
             // Drag from start date to the end of the month
             await DragFromOneCellToAnother(DayCell(startDate.Day), DayCell(endOfMonthDay));
@@ -123,5 +129,27 @@ namespace BookingRoom.UI.Pages.BookPage.Components
 
             await Task.Delay(500);
         }
+
+
+        public async Task<bool> IsOffRangeDayEnabled(int day) => await GetOffRangeDayCell(day).IsEnabledAsync(new LocatorIsEnabledOptions() { Timeout = 500 });
+
+        public async Task<bool> IsSelectedSlotPresent(DateTime date, string text)
+        {
+            await NavigateToMonth(date);
+            return await GetSelectedSLotByText(text).IsVisibleAsync();
+        }
+
+
+        #region Visibility Checks
+
+        public async Task<bool> IsTodayButtonVisible() => await TodayButton.IsVisibleAsync();
+
+        public async Task<bool> IsBackButtonVisible() => await BackButton.IsVisibleAsync();
+
+        public async Task<bool> IsNextButtonVisible() => await NextButton.IsVisibleAsync();
+
+        public async Task<bool> IsMonthSpanVisible() => await MonthSpan.IsVisibleAsync();
+
+        #endregion
     }
 }

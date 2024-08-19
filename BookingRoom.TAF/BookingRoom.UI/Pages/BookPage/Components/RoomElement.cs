@@ -27,7 +27,7 @@ namespace BookingRoom.UI.Pages.BookPage.Components
 
         public async Task<string> GetDescription() => await DescriptionElement.TextContentAsync();
 
-        public async Task<IEnumerable<string>> GetAmenities()
+        public async Task<List<string>> GetAmenities()
         {
             var amenities = new List<string>();
             var amenitiesHandles = AmenitiesElements;
