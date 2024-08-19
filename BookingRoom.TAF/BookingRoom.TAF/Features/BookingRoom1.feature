@@ -23,4 +23,4 @@ Scenario: Booking room scenario1
 	And Select two night three day stay on calendar in current month
 	And Input personal details into form
 	And Click on ‘Book’ button on room form
-	#Then I check that ‘Book Successful’ dialog appears with correct booking date
+	Then I check that ‘Booking Successful’ modal appears with correct dates and text

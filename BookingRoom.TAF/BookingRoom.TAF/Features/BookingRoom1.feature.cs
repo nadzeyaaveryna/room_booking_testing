@@ -200,6 +200,9 @@ this.ScenarioInitialize(scenarioInfo);
 #line 25
  testRunner.And("Click on ‘Book’ button on room form", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
+#line 26
+ testRunner.Then("I check that ‘Booking Successful’ modal appears with correct dates and text", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
             }
             this.ScenarioCleanup();
         }
