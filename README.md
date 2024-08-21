@@ -1,28 +1,38 @@
-# room_booking_testing
-Test automation framework for booking the room task using .NET
+# Room Booking System Test Automation Framework
 
-# Project Overview
+This document provides an overview of the test automation framework (TAF) developed for the room booking system. It outlines the structure, tools used, modules descriptions, and instructions on how to run the code.
 
-This project is a comprehensive .NET test automation solution, designed to streamline the testing process and improve software quality. Our solution leverages various tools and technologies to provide a robust framework for automated testing.
+## Structure Overview
 
-# Prerequisites
+The codebase is organized into multiple projects, each serving a specific purpose within the test automation framework for the room booking system. The key projects are:
 
-Before you can run the code, ensure you have the following installed on your system:
+- **BookingRoom.API**: Contains API controllers for handling room bookings, room reports, and base API functionalities. Includes response models for room and room reports.
+- **BookingRoom.Core**: Provides the core functionalities, including business objects for persons, rooms, and time slots, configuration settings, utility functions, and logging mechanisms.
+- **BookingRoom.TAF**: The main test automation framework project, containing feature files for BDD scenarios, step definitions for mapping the steps in feature files to C# methods, and support utilities like screenshot helpers.
+- **BookingRoom.UI**: Contains the UI drivers and helpers required for UI test automation, including browser factory, waiting helpers, and page object models for various pages and components in the UI.
 
-- .NET SDK: The project requires .NET 5.0 SDK installed. You can download it from [here](https://dotnet.microsoft.com/download/dotnet/5.0).
-- Node.js: To run Playwright tests, Node.js (latest stable version) is required. Download Node.js from [here](https://nodejs.org/en/download/).
-- Playwright: After installing Node.js, install Playwright by running `npm install playwright` in your CLI.
+## Tools Used in the Solution
 
-# How to Run the Code Using CLI
+The solution utilizes several tools and libraries, including but not limited to:
 
-1. **Clone the Repository:** Clone the repository to your local machine.
-2. **Navigate to the Project Directory:** Open a command line interface (CLI) and navigate to the project directory.
-3. **Restore Dependencies:** Run `dotnet restore` to restore all the dependencies. This step ensures that all the necessary .NET packages are available.
-4. **Build the Project:** Build the project by executing `dotnet build`. This compiles the source code and prepares it for execution.
-5. **Run Tests:** To run the .NET tests, use `dotnet test`. This command will execute all the tests defined in the project according to the configurations.
+- **SpecFlow**: Used for writing and executing BDD-style tests, as seen in the `.feature` files and their corresponding step definitions.
+- **Playwright**: Utilized within the `BookingRoom.UI` project for browser automation and interactions in UI tests.
+- **NLog**: A logging library used in the `BookingRoom.Core` project for logging purposes.
 
-For running tests that require Playwright:
-- Ensure Playwright is installed by running `npm install playwright` if you haven't done so already.
-- Navigate to the directory containing the Playwright tests and execute the tests using `npx playwright test`.
+## Modules Description
 
-These instructions offer a step-by-step guide for running the project using command line interfaces, facilitating users who either do not have access to Visual Studio or prefer CLI tools for their operations.
+- **API Controllers (`BookingRoom.API/ApiControllers`)**: Handles HTTP requests and responses for room booking and reporting functionalities.
+- **Business Objects (`BookingRoom.Core/BusinessObjects`)**: Defines the core entities like `Person`, `Room`, and `TimeSlot`, along with their management logic.
+- **Configuration (`BookingRoom.Core/Configuration`)**: Manages application configuration settings.
+- **Utils (`BookingRoom.Core/Utils`)**: Provides utility functions including date/time helpers, enum helpers, string generation helpers, and a test context helper for managing test execution context.
+- **Features (`BookingRoom.TAF/Features`)**: Contains Gherkin feature files defining BDD scenarios for testing the room booking system.
+- **Step Definitions (`BookingRoom.TAF/StepDefinitions`)**: Implements step definitions for the steps outlined in the feature files, binding them to actual test code.
+- **UI Pages (`BookingRoom.UI/Pages`)**: Implements the Page Object Model (POM) pattern for UI elements, facilitating easier UI test automation.
+
+## How to Run the Code
+
+1. Ensure you have .NET Core SDK installed on your machine.
+2. Open the solution file `BookingRoom.TAF/BookingRoom.TAF.sln` in Visual Studio or another compatible IDE.
+3. Restore NuGet packages to resolve all dependencies.
+4. Build the solution to ensure everything compiles correctly.
+5. To run the tests, navigate to the Test Explorer in your IDE and run all or select specific tests to execute.
