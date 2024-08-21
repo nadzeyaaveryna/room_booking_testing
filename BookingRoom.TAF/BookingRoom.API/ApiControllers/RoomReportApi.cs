@@ -1,39 +1,23 @@
 ﻿using BookingRoom.API.Responses;
+using BookingRoom.Core.Configuration;
 using Microsoft.Playwright;
 using Newtonsoft.Json;
 
 namespace BookingRoom.API.ApiControllers
 {
-    public class RoomReportApi
+    public class RoomReportApi : BaseApi
     {
-        private readonly IAPIRequestContext _requestContext;
+        protected override string HostEndpoint => AppConfiguration.TestSettings.ApplicationUrl;
 
-        private string ReportRoomUrl(int roomId) => $"https://automationintesting.online/report/room/{roomId}";
+        private string ReportRoomUrl(int roomId) => $"{HostEndpoint}report/room/{roomId}";
 
-        public RoomReportApi(IAPIRequestContext requestContext)
+        public RoomReportApi(IAPIRequestContext requestContext) : base(requestContext)
         {
-            _requestContext = requestContext;
         }
 
         public async Task<RoomReport?> GetRoomReportAsync(int roomId)
-        {
-            var response = await _requestContext.GetAsync(ReportRoomUrl(roomId));
-
-            if (response.Status == 200)
-            {
-                var jsonResponse = await response.TextAsync();
-
-                var settings = new JsonSerializerSettings
-                {
-                    NullValueHandling = NullValueHandling.Ignore,
-                    MissingMemberHandling = MissingMemberHandling.Ignore,
-                    DateTimeZoneHandling = DateTimeZoneHandling.Utc
-                };
-
-                return JsonConvert.DeserializeObject<RoomReport>(jsonResponse, settings);
-            }
-
-            throw new InvalidOperationException($"Failed to fetch room report with status code: {response.Status}");
+        { 
+            return await Get<RoomReport>(ReportRoomUrl(roomId));
         }
     }
 }

@@ -16,7 +16,7 @@ Scenario: Booking room scenario1
 	When Select first room available in booking page
 	And Retrieve booked slots for room
 	And I click ‘Book this room’ button for selected room
-	And Select two night three day stay on calendar in current month
+	And Select '3' day stay on calendar in current month
 	And Input personal details into form
 	And Click on ‘Book’ button on room form
 	Then I check that ‘Booking Successful’ modal is 'present'

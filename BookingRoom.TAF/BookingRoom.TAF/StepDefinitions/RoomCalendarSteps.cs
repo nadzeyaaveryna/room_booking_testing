@@ -24,15 +24,15 @@ namespace BookingRoom.TAF.StepDefinitions
         }
 
 
-        [When(@"Select two night three day stay on calendar in current month")]
-        public async Task WhenSelectTwoNightThreeDayStayOnCalendarInCurrentMont()
+        [When(@"Select '(.*)' day stay on calendar in current month")]
+        public async Task WhenSelectTwoNightThreeDayStayOnCalendarInCurrentMont(int numberOfDays)
         {
             var room = TestContextVariable.Room.Get<Room>();
             var roomElement = TestContextVariable.RoomElement.Get<RoomElement>();
 
             Assert.That(room, Is.Not.Null, "Room is not registered is object container.");
 
-            var newSlot = new TimeSlotManager(room.BookedSlots).FindAvailableSlotStartingFromCurrentMonth(3);
+            var newSlot = new TimeSlotManager(room.BookedSlots).FindAvailableSlotStartingFromCurrentMonth(numberOfDays);
 
             room.BookedSlots.Add(newSlot);
 
