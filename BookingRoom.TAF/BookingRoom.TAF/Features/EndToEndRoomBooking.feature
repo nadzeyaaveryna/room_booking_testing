@@ -2,7 +2,7 @@
 
 Featrure that provides testing of E2E scenarios
 
-@Includes_api_call
+
 Scenario: Check Room details
 	Given I navigate to booking application 
 	When Select first room available in booking page
