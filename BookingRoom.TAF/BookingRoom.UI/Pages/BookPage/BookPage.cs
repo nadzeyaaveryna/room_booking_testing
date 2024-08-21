@@ -1,4 +1,5 @@
 ﻿using BookingRoom.Core.Configuration;
+using BookingRoom.UI.Helpers;
 using BookingRoom.UI.Pages.BookPage.Components;
 using Microsoft.Playwright;
 
@@ -12,7 +13,7 @@ namespace BookingRoom.UI.Pages.BookPage
         {
         }
 
-        private ILocator BookButton => Page.Locator(".openBooking");
+        private ILocator RoomsElement => Page.Locator("xpath=//div[./*[@class = 'row hotel-room-info']]");
 
         public override async Task OpenPage()
         {
@@ -26,30 +27,19 @@ namespace BookingRoom.UI.Pages.BookPage
 
         public async Task<List<RoomElement>> GetRoomsList()
         {
-            if (Page != null)
+            await RoomsElement.WaitForElement(3000);
+
+            var roomsElement = await RoomsElement.AllAsync();
+
+
+            var roomPageElements = new List<RoomElement>();
+
+            foreach (var element in roomsElement)
             {
-                await Page.WaitForSelectorAsync("xpath=//*[@class = 'row hotel-room-info']",
-                        new()
-                        {
-                            Timeout = 3000,
-                            State = WaitForSelectorState.Visible
-                        })
-                    .ConfigureAwait(false);
+                roomPageElements.Add(new RoomElement(element, Page));
             }
 
-            var roomsElement = await Page.Locator("xpath=//div[./*[@class = 'row hotel-room-info']]").AllAsync();
-
-
-                var roomPageElements = new List<RoomElement>();
-
-                foreach (var element in roomsElement)
-                {
-                    roomPageElements.Add(new RoomElement(element, Page));
-                }
-
-                return roomPageElements;
-            }
-
-        public async Task ClickBookThisRoomButton() => await BookButton.ClickAsync();
+            return roomPageElements;
+        }
     }
 }

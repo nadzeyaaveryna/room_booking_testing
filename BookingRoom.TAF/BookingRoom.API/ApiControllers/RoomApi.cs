@@ -1,7 +1,6 @@
 ﻿using BookingRoom.API.Responses;
 using BookingRoom.Core.Configuration;
 using Microsoft.Playwright;
-using Newtonsoft.Json;
 
 namespace BookingRoom.API.ApiControllers
 {

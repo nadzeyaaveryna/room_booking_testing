@@ -17,7 +17,6 @@ namespace BookingRoom.UI.Pages
         public async Task<bool> IsModalDisplayed()
         {
             await RootElement.WaitForElement(2000);
-
             return await RootElement.IsVisibleAsync();
         }
     }

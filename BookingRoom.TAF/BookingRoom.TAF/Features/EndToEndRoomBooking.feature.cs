@@ -75,11 +75,9 @@ namespace BookingRoom.TAF.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Check Room details")]
-        [NUnit.Framework.CategoryAttribute("Includes_api_call")]
         public virtual void CheckRoomDetails()
         {
-            string[] tagsOfScenario = new string[] {
-                    "Includes_api_call"};
+            string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Check Room details", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 6

@@ -13,6 +13,11 @@
             BookedSlots = bookedSlots;
         }
 
+        /// <summary>
+        /// Finds an available time slot starting from the current day to the end of the current month.
+        /// </summary>
+        /// <param name="timeSlotDays">The number of consecutive days needed for the time slot.</param>
+        /// <returns>The first available time slot that meets the criteria; otherwise, null if no such slot exists.</returns>
         public TimeSlot FindAvailableSlotStartingFromCurrentMonth(int timeSlotDays)
         {
             DateTime currentDay = DateTime.Now;
@@ -41,6 +46,11 @@
             return null;
         }
 
+        /// <summary>
+        /// Searches for an available time slot in the past, starting from a month ago and going backwards.
+        /// </summary>
+        /// <param name="timeSlotDays">The number of consecutive days needed for the time slot.</param>
+        /// <returns>An available time slot if found; otherwise, null.</returns>
         public TimeSlot FindAvailablePastSlot(int timeSlotDays)
         {
             DateTime currentDate = DateTime.Now.Date;
@@ -71,6 +81,12 @@
             return null;
         }
 
+        /// <summary>
+        /// Attempts to find an available time slot in future months, checking up to a specified number of months ahead.
+        /// </summary>
+        /// <param name="timeSlotDays">The number of consecutive days needed for the time slot.</param>
+        /// <param name="maxMonthsToCheck">The maximum number of months ahead to check.</param>
+        /// <returns>An available time slot if found within future months; otherwise, null.</returns>
         public TimeSlot FindAvailableFutureSlot(int timeSlotDays, int maxMonthsToCheck = 12)
         {
             BookedSlots = BookedSlots.OrderBy(slot => slot.StartDate).ToList();
@@ -88,20 +104,20 @@
                     DateTime potentialEndDate = searchStart.AddDays(timeSlotDays - 1);
 
                     if (potentialEndDate > searchEnd)
-                        break; // The slot cannot spill over to the next month.
+                        break; 
 
                     if (!IsOverlappingWithAnySlot(BookedSlots, searchStart, potentialEndDate))
                     {
-                        return new TimeSlot(searchStart, potentialEndDate) {IsBookedInTest = true}; // Available slot found.
+                        return new TimeSlot(searchStart, potentialEndDate) {IsBookedInTest = true}; 
                     }
 
                     searchStart = searchStart.AddDays(1);
                 }
 
-                monthsChecked++; // Increment to check the next month.
+                monthsChecked++; 
             }
 
-            return null; // 
+            return null; 
         }
 
 

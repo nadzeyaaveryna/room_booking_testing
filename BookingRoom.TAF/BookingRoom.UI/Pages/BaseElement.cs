@@ -1,4 +1,4 @@
-﻿using BookingRoom.UI.Pages.BookPage.Components;
+﻿using BookingRoom.UI.Helpers;
 using Microsoft.Playwright;
 
 namespace BookingRoom.UI.Pages
@@ -16,20 +16,7 @@ namespace BookingRoom.UI.Pages
 
         public async Task<bool> IsElementDisplayed()
         {
-            try
-            {
-                await _rootElement.WaitForAsync(new LocatorWaitForOptions()
-                {
-                    State = WaitForSelectorState.Visible,
-                    Timeout = 500
-                });
-
-            }
-            catch (TimeoutException ex)
-            {
-            }
-
-
+            await _rootElement.WaitForElement(500);
             return await _rootElement.IsVisibleAsync();
         }
     }
