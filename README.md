@@ -9,18 +9,20 @@ This project is a comprehensive .NET test automation solution, designed to strea
 
 Before you can run the code, ensure you have the following installed on your system:
 
-- .NET SDK: The project is built using .NET, so you need the .NET Software Development Kit (SDK) installed. You can download it from [here](https://dotnet.microsoft.com/download).
-- Node.js: Since we're using Playwright for some of our testing needs, Node.js is required to run JavaScript code. Download Node.js from [here](https://nodejs.org/en/download/).
-- Playwright: With Node.js installed, you need to install Playwright. This can be done by running `npm install playwright` in your CLI.
+- .NET SDK: The project requires .NET 5.0 SDK installed. You can download it from [here](https://dotnet.microsoft.com/download/dotnet/5.0).
+- Node.js: To run Playwright tests, Node.js (latest stable version) is required. Download Node.js from [here](https://nodejs.org/en/download/).
+- Playwright: After installing Node.js, install Playwright by running `npm install playwright` in your CLI.
 
 # How to Run the Code Using CLI
 
-1. **Clone the Repository:** First, clone the repository to your local machine using `git clone <repository-url>`.
-2. **Navigate to the Project Directory:** Change into the project directory using `cd <directory-name>`.
-3. **Restore Dependencies:** Run `dotnet restore` to restore the project dependencies. This is important for .NET projects.
-4. **Build the Project:** Execute `dotnet build` to build the project. This compiles the source code and prepares it for execution.
-5. **Run Tests:** To execute the automated tests, use `dotnet test`. This will run all the tests defined in the project according to the configurations.
+1. **Clone the Repository:** Clone the repository to your local machine.
+2. **Navigate to the Project Directory:** Open a command line interface (CLI) and navigate to the project directory.
+3. **Restore Dependencies:** Run `dotnet restore` to restore all the dependencies. This step ensures that all the necessary .NET packages are available.
+4. **Build the Project:** Build the project by executing `dotnet build`. This compiles the source code and prepares it for execution.
+5. **Run Tests:** To run the .NET tests, use `dotnet test`. This command will execute all the tests defined in the project according to the configurations.
 
-For Playwright-based tests, navigate to the directory containing the Playwright tests and run `npx playwright test` to execute these tests.
+For running tests that require Playwright:
+- Ensure Playwright is installed by running `npm install playwright` if you haven't done so already.
+- Navigate to the directory containing the Playwright tests and execute the tests using `npx playwright test`.
 
-These instructions provide a comprehensive guide for running the project using command line interfaces, catering to users who may not have access to Visual Studio or prefer CLI tools.
+These instructions offer a step-by-step guide for running the project using command line interfaces, facilitating users who either do not have access to Visual Studio or prefer CLI tools for their operations.
