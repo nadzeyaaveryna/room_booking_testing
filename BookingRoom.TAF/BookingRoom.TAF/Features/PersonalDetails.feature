@@ -1,6 +1,7 @@
 ﻿Feature: BookingRoom
 
-A short summary of the feature
+Feature to test booking personal detais form 
+
 
 @tag1
 Scenario: Booking room scenario

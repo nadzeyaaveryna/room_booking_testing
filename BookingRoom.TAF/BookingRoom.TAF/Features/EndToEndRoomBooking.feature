@@ -1,6 +1,6 @@
 ﻿Feature: EndToEndRoomBooking
 
-A short summary of the feature
+Featrure that provides testing of E2E scenarios
 
 @Includes_api_call
 Scenario: Check Room details
