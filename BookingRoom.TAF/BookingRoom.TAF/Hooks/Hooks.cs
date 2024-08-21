@@ -1,18 +1,26 @@
 ﻿using BoDi;
 using BookingRoom.Core.Configuration;
+using BookingRoom.Core.Utils;
+using BookingRoom.TAF.Support;
+using BookingRoom.UI.Drivers;
 using Microsoft.Playwright;
-using System.Configuration;
-using static System.Net.Mime.MediaTypeNames;
+using NUnit.Framework;
+using TechTalk.SpecFlow.Tracing;
+using BrowserType = BookingRoom.UI.Drivers.BrowserType;
+
+[assembly: Parallelizable(ParallelScope.Fixtures)]
 
 namespace BookingRoom.TAF.Hooks
 {
     [Binding]
     public class Hooks
     {
-        public IBrowser browser;
-        public IBrowserContext context;
-        public IPage page;
-        public IPlaywright playwright;
+        public IPlaywright Playwright;
+        public IBrowser Browser;
+        public IBrowserContext Context;
+        public IPage Page;
+        public IAPIRequestContext RequestContext;
+
         private readonly IObjectContainer _objectContainer;
         private readonly ScenarioContext _scenarioContext;
 
@@ -33,12 +41,32 @@ namespace BookingRoom.TAF.Hooks
         [BeforeScenario()]
         public async Task CreateBrowser()
         {
-            playwright = await Playwright.CreateAsync();
-            BrowserTypeLaunchOptions typeLaunchOptions = new BrowserTypeLaunchOptions { Headless = false };
-            browser = await playwright.Chromium.LaunchAsync(typeLaunchOptions);
-            context = await browser.NewContextAsync();
-            page = await context.NewPageAsync();
-            _objectContainer.RegisterInstanceAs(page);
+            var browserType = AppConfiguration.TestSettings?.BrowserType.ToEnum<BrowserType>();
+            var isHeadless = AppConfiguration.TestSettings?.IsHeadless;
+
+            var driver = new Driver(browserType.Value, isHeadless.Value);
+
+            Playwright = driver.PlaywrightInstance;
+            Browser = driver.Browser;
+            Context = driver.BrowserContext;
+            RequestContext = await driver.PlaywrightInstance.APIRequest.NewContextAsync();
+
+            Page = await Context.NewPageAsync();
+
+            _objectContainer.RegisterInstanceAs(Page);
+            _objectContainer.RegisterInstanceAs(RequestContext);
+        }
+
+
+        [AfterScenario()]
+        public async Task CloseBrowser()
+        {
+            if (_scenarioContext.TestError != null)
+            {
+                await Page.Screenshot(_scenarioContext.ScenarioInfo.Title.ToIdentifier(), AppConfiguration.TestDataFilesFolder);
+            }
+
+            await Browser.DisposeAsync();
         }
     }
 }
