@@ -1,5 +1,8 @@
 ﻿namespace BookingRoom.Core.BusinessObjects.TimeSlot
 {
+    /// <summary>
+    /// TODO REFACTOR, doesn't take into account end of month 
+    /// </summary>
     public class TimeSlotManager
     {
 
@@ -67,6 +70,40 @@
 
             return null;
         }
+
+        public TimeSlot FindAvailableFutureSlot(int timeSlotDays, int maxMonthsToCheck = 12)
+        {
+            BookedSlots = BookedSlots.OrderBy(slot => slot.StartDate).ToList();
+
+            DateTime currentDate = DateTime.Now;
+            int monthsChecked = 0;
+
+            while (monthsChecked < maxMonthsToCheck)
+            {
+                DateTime searchStart = new DateTime(currentDate.Year, currentDate.Month, 1).AddMonths(1 + monthsChecked);
+                DateTime searchEnd = searchStart.AddMonths(1).AddDays(-1);
+
+                while (searchStart <= searchEnd)
+                {
+                    DateTime potentialEndDate = searchStart.AddDays(timeSlotDays - 1);
+
+                    if (potentialEndDate > searchEnd)
+                        break; // The slot cannot spill over to the next month.
+
+                    if (!IsOverlappingWithAnySlot(BookedSlots, searchStart, potentialEndDate))
+                    {
+                        return new TimeSlot(searchStart, potentialEndDate) {IsBookedInTest = true}; // Available slot found.
+                    }
+
+                    searchStart = searchStart.AddDays(1);
+                }
+
+                monthsChecked++; // Increment to check the next month.
+            }
+
+            return null; // 
+        }
+
 
         private bool IsOverlappingWithAnySlot(List<TimeSlot> timeSlots, DateTime startDate, DateTime endDate)
         {

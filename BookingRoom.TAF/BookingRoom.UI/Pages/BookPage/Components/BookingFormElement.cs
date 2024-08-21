@@ -1,4 +1,5 @@
-﻿using Microsoft.Playwright;
+﻿using BookingRoom.UI.Helpers;
+using Microsoft.Playwright;
 
 namespace BookingRoom.UI.Pages.BookPage.Components
 {
@@ -21,6 +22,10 @@ namespace BookingRoom.UI.Pages.BookPage.Components
 
         private ILocator CancelButton => _rootElement.GetByRole(AriaRole.Button, new() { Name = "Cancel" });
 
+        private ILocator ErrorElement => _rootElement.Locator(@$".alert.alert-danger");
+
+        private ILocator ErrorMessageElement(string errorMessage) =>
+            _rootElement.Locator(@$".alert.alert-danger p:has-text('{errorMessage}')");
 
         public async Task<string?> GetFirstName() => await FirstNameInput.TextContentAsync();
 
@@ -41,5 +46,13 @@ namespace BookingRoom.UI.Pages.BookPage.Components
         public async Task ClickBookButton() => await BookButton.ClickAsync();
 
         public async Task ClickCancelButton() => await CancelButton.ClickAsync();
+
+        public async Task<bool> IsErrorPresent()
+        {
+            await ErrorElement.WaitForElement(1000);
+            return await ErrorElement.IsVisibleAsync();
+        }
+
+        public async Task<bool> IsErrorMessagePresent(string errorMessage) => await ErrorMessageElement(errorMessage).IsVisibleAsync();
     }
 }

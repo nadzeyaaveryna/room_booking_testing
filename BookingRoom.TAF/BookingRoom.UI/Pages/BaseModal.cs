@@ -1,4 +1,5 @@
-﻿using Microsoft.Playwright;
+﻿using BookingRoom.UI.Helpers;
+using Microsoft.Playwright;
 
 namespace BookingRoom.UI.Pages
 {
@@ -15,19 +16,7 @@ namespace BookingRoom.UI.Pages
 
         public async Task<bool> IsModalDisplayed()
         {
-            try
-            {
-                await RootElement.WaitForAsync(new LocatorWaitForOptions()
-                {
-                    State = WaitForSelectorState.Visible,
-                    Timeout = 3000
-                });
-
-            }
-            catch (TimeoutException ex)
-            {
-            }
-
+            await RootElement.WaitForElement(2000);
 
             return await RootElement.IsVisibleAsync();
         }

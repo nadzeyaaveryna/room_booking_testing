@@ -26,7 +26,7 @@ namespace BookingRoom.UI.Pages.BookPage.Components
 
         private ILocator DayCell(int day) =>
             _rootElement.Locator(
-                $"xpath=//*[@role='cell'][.//button[@role='cell' and text()='{day.ToString()}' and not(ancestor::*[contains(@class, 'rbc-off-range')])]]");
+                $"xpath=//*[@role='cell'][.//button[@role='cell' and text()='{day:D2}' and not(ancestor::*[contains(@class, 'rbc-off-range')])]]");
 
         private ILocator GetOffRangeDayCell(int day) => _rootElement.Locator($"xpath=//*[@class='rbc-date-cell rbc-off-range']//button[text()='{day}']");
 

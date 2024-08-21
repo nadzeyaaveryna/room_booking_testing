@@ -20,7 +20,6 @@ namespace BookingRoom.UI.Pages.BookPage.Components
 
         public BookingFormElement BookingForm => new BookingFormElement(_rootElement.Locator("xpath=//*[contains(@class, 'col-sm')][./*[contains(@class, 'room-booking-form')]]"), _page);
 
-
         public async Task<string> GetImageUrl() => await ImageElement.GetAttributeAsync("src");
 
         public async Task<string> GetType() => await TypeElement.TextContentAsync();
@@ -57,6 +56,5 @@ namespace BookingRoom.UI.Pages.BookPage.Components
 
             return room;
         }
-
     }
 }

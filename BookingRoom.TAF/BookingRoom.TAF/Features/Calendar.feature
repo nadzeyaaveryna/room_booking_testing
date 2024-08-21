@@ -58,7 +58,7 @@ Scenario: Check that days from past month visible in calendar are disabled
 	And I click ‘Book this room’ button for selected room
 	Then Check that days from previous month are disabled
 
-
+@Bug
 Scenario: User should be unable to select past days
 	When Select first room available in booking page
 	And Retrieve selected room details
@@ -67,7 +67,32 @@ Scenario: User should be unable to select past days
 	Then Check that selected slot is 'not present' on calendar
 
  
-Scenario: Check that selected time slot is saved on calendar when navigate buttons
+Scenario: Check that selected time slot is saved on calendar when navigate Next and Back buttons
+	When Select first room available in booking page
+	And Retrieve selected room details
+	And I click ‘Book this room’ button for selected room
+	And Select '3' day stay on calendar in one of the next months
+
+	#Next month
+	When Click 'Next' calendar button
+	#Go back
+	When Click 'Back' calendar button
+	Then Check that selected slot is 'present' on calendar
+
+
+	 
+Scenario: Check that selected time slot is saved on calendar when navigate Today and Next buttons
+	When Select first room available in booking page
+	And Retrieve selected room details
+	And I click ‘Book this room’ button for selected room
+	And Select '3' day stay on calendar in one of the next months
+
+	#Next month
+	When Click 'Today' calendar button
+	#Go back
+	When Click 'Next' calendar button
+	Then Check that selected slot is 'present' on calendar
+
 
 @TODO
 @Ignore 
@@ -79,11 +104,21 @@ Scenario: User should be unable to select days of next month that is visible in 
 
 @TODO
 @Ignore 
+Scenario: User should be able to see previous month slots if they are visible in current month
+
+#Check that time slot is selected for correct days in calendar, not just present 
+@TODO
+@Ignore 
 Scenario: Check that selected time slot shows correct booking details in calendar
 
 @TODO
 @Ignore 
+@Bug
 Scenario: User should be able to select time slot that spans across two months
+
+@TODO
+@Ignore 
+Scenario: User should be able to select two time slots
 
 
 

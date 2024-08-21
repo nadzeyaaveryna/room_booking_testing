@@ -32,9 +32,41 @@ namespace BookingRoom.TAF.StepDefinitions
 
             Assert.That(room, Is.Not.Null, "Room is not registered is object container.");
 
-            var newSlot = new TimeSlotManager(room.BookedSlots).FindAvailableSlotStartingFromCurrentMonth(numberOfDays);
+            TimeSlot newSlot;
+            if (!room.BookedSlots.Any(el => el.IsBookedInTest))
+            { 
+                newSlot =
+                    new TimeSlotManager(room.BookedSlots).FindAvailableSlotStartingFromCurrentMonth(numberOfDays); 
+                room.BookedSlots.Add(newSlot);
+            }
+            else
+            {
+                newSlot = room.BookedSlots.First(el => el.IsBookedInTest);
+            }
 
-            room.BookedSlots.Add(newSlot);
+            await roomElement.Calendar.SelectDate(newSlot.StartDate, newSlot.EndDate);
+        }
+
+
+        [When(@"Select '(.*)' day stay on calendar in one of the next months")]
+        public async Task WhenSelectTwoNightThreeDayStayOnCalendarInNextMonths(int numberOfDays)
+        {
+            var room = TestContextVariable.Room.Get<Room>();
+            var roomElement = TestContextVariable.RoomElement.Get<RoomElement>();
+
+            Assert.That(room, Is.Not.Null, "Room is not registered is object container.");
+
+            TimeSlot newSlot;
+            if (!room.BookedSlots.Any(el => el.IsBookedInTest))
+            {
+                newSlot =
+                    new TimeSlotManager(room.BookedSlots).FindAvailableFutureSlot(numberOfDays);
+                room.BookedSlots.Add(newSlot);
+            }
+            else
+            {
+                newSlot = room.BookedSlots.First(el => el.IsBookedInTest);
+            }
 
             await roomElement.Calendar.SelectDate(newSlot.StartDate, newSlot.EndDate);
         }
