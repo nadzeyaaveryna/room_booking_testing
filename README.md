@@ -11,7 +11,6 @@ The codebase is organized into multiple projects, each serving a specific purpos
 - **BookingRoom.Tests**: The main test automation framework project, containing feature files for BDD scenarios, step definitions for mapping the steps in feature files to C# methods, and support utilities like screenshot helpers.
 - **BookingRoom.UI**: Contains the UI drivers and helpers required for UI test automation, including browser factory, waiting helpers, and page object models for various pages and components in the UI.
 
-
 ## Tools Used in the Solution
 
 The solution utilizes several tools and libraries, including but not limited to:
@@ -19,7 +18,6 @@ The solution utilizes several tools and libraries, including but not limited to:
 - **SpecFlow**: Used for writing and executing BDD-style tests, as seen in the `.feature` files and their corresponding step definitions.
 - **Playwright**: Utilized within the `BookingRoom.UI` project for browser automation and interactions in UI tests.
 - **NLog**: A logging library used in the `BookingRoom.Core` project for logging purposes.
-
 
 ## Modules Description
 
@@ -48,18 +46,18 @@ Development configuration for test env is in: [BookingRoom.Core/appsettings.json
 
 2 Restore Dependencies using command:
 
-dotnet restore
+ ```dotnet restore ```
 
 3. Build the Project using command:
 
-dotnet build
+ ```dotnet build ```
 
 4. Install Playwright browsers using PowerShell command: 
 
-pwsh BookingRoom.TAF/bin/Debug/net6.0/playwright.ps1 install
+ ```pwsh BookingRoom.TAF/bin/Debug/net6.0/playwright.ps1 install ```
 
 5. Execute Tests:
-1.
-dotnet test
+
+ ```dotnet test ```
 
 This command will discover and run all the tests in your project.
