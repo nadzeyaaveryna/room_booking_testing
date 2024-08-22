@@ -3,7 +3,7 @@ using BookingRoom.Core.BusinessObjects.Person;
 using BookingRoom.Core.Utils;
 using BookingRoom.Core.Utils.TestsContext;
 
-namespace BookingRoom.TAF.StepDefinitions.DataGenerationSteps
+namespace BookingRoom.Tests.StepDefinitions.DataGenerationSteps
 {
     [Binding]
     public class UserDataGenerationSteps

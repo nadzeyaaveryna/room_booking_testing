@@ -7,7 +7,7 @@ namespace BookingRoom.UI.Pages.BookPage
 {
     public class BookPage : BasePage
     {
-        public override string Url => AppConfiguration.TestSettings.ApplicationUrl;
+        public override string? Url => AppConfiguration.TestSettings?.ApplicationUrl;
 
         public BookPage(IPage page) : base(page)
         {

@@ -6,7 +6,7 @@ namespace BookingRoom.API.ApiControllers
 {
     public class RoomApi : BaseApi
     {
-        protected override string HostEndpoint => AppConfiguration.TestSettings.ApplicationUrl;
+        protected override string? HostEndpoint => AppConfiguration.TestSettings?.ApplicationUrl;
 
         private string RoomsUrl => $"{HostEndpoint}room/";
    

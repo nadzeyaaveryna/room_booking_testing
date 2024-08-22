@@ -4,7 +4,7 @@
     {
         public string BrowserType { get; set; }
 
-        public string ApplicationUrl { get; set; }
+        public string? ApplicationUrl { get; set; }
 
         public bool IsHeadless { get; set; }
     }

@@ -9,7 +9,7 @@ Scenario Outline: Validate First Name field on incorrect input
 	And Retrieve booked slots for room
 	And Prepare user details with 'First Name' as '<FirstName>'
 	And I click ‘Book this room’ button for selected room
-	And Select '2' day stay on calendar in one of the next months
+	And Select '2' day stay on calendar in starting from '2' months ahead
 	And Input personal details into form
 	And Click on ‘Book’ button on room form
 	Then Check that error message is 'present'
@@ -32,7 +32,7 @@ Scenario Outline: Validate First Name field length error handling
 	And Retrieve booked slots for room
 	And Prepare user details with 'First Name' with length as '<FirstName>'
 	And I click ‘Book this room’ button for selected room
-	And Select '2' day stay on calendar in one of the next months
+	And Select '2' day stay on calendar in starting from '2' months ahead
 	And Input personal details into form
 	And Click on ‘Book’ button on room form
 	Then Check that error message is 'present'
@@ -49,7 +49,7 @@ Scenario Outline: Validate First Name field length acceptance
 	And Retrieve booked slots for room
 	And Prepare user details with 'First Name' with length as '<FirstName>'
 	And I click ‘Book this room’ button for selected room
-	And Select '2' day stay on calendar in one of the next months
+	And Select '2' day stay on calendar in starting from '2' months ahead
 	And Input personal details into form
 	And Click on ‘Book’ button on room form
 	Then Check that error message is 'not present'
@@ -66,7 +66,7 @@ Scenario Outline: Validate Last Name field on incorrect input
 	And Retrieve booked slots for room
 	And Prepare user details with 'Last Name' as '<LastName>'
 	And I click ‘Book this room’ button for selected room
-	And Select '2' day stay on calendar in one of the next months
+	And Select '2' day stay on calendar in starting from '2' months ahead
 	And Input personal details into form
 	And Click on ‘Book’ button on room form
 	Then Check that error message is 'present'
@@ -88,7 +88,7 @@ Scenario Outline: Validate Last Name field length error handling
 	And Retrieve booked slots for room
 	And Prepare user details with 'First Name' with length as '<LastName>'
 	And I click ‘Book this room’ button for selected room
-	And Select '2' day stay on calendar in one of the next months
+	And Select '2' day stay on calendar in starting from '2' months ahead
 	And Input personal details into form
 	And Click on ‘Book’ button on room form
 	Then Check that error message is 'present'
@@ -105,7 +105,7 @@ Scenario Outline: Validate Last Name field length acceptance
 	And Retrieve booked slots for room
 	And Prepare user details with 'First Name' with length as '<LastName>'
 	And I click ‘Book this room’ button for selected room
-	And Select '2' day stay on calendar in one of the next months
+	And Select '2' day stay on calendar in starting from '2' months ahead
 	And Input personal details into form
 	And Click on ‘Book’ button on room form
 	Then Check that error message is 'not present'
@@ -123,7 +123,7 @@ Scenario Outline: Validate Email field on incorrect input
 	And Retrieve booked slots for room
 	And Prepare user details with 'Email' as '<Email>'
 	And I click ‘Book this room’ button for selected room
-	And Select '2' day stay on calendar in one of the next months
+	And Select '2' day stay on calendar in starting from '2' months ahead
 	And Input personal details into form
 	And Click on ‘Book’ button on room form
 	Then Check that error message is 'present'
@@ -148,7 +148,7 @@ Scenario Outline: Validate Email field length error handling
 	And Retrieve booked slots for room
 	And Prepare user details with 'Email' with length as '<Email>'
 	And I click ‘Book this room’ button for selected room
-	And Select '2' day stay on calendar in one of the next months
+	And Select '2' day stay on calendar in starting from '2' months ahead
 	And Input personal details into form
 	And Click on ‘Book’ button on room form
 	Then Check that error message is 'present'
@@ -167,7 +167,7 @@ Scenario Outline: Validate Email field length acceptance
 	And Retrieve booked slots for room
 	And Prepare user details with 'Email' with length as '<Email>'
 	And I click ‘Book this room’ button for selected room
-	And Select '2' day stay on calendar in one of the next months
+	And Select '2' day stay on calendar in starting from '2' months ahead
 	And Input personal details into form
 	And Click on ‘Book’ button on room form
 	Then Check that error message is 'not present'
@@ -186,7 +186,7 @@ Scenario Outline: Validate Phone field on incorrect input
 	And Retrieve booked slots for room
 	And Prepare user details with 'Phone' as '<Phone>'
 	And I click ‘Book this room’ button for selected room
-	And Select '2' day stay on calendar in one of the next months
+	And Select '2' day stay on calendar in starting from '2' months ahead
 	And Input personal details into form
 	And Click on ‘Book’ button on room form
 	Then Check that error message is 'present'
@@ -205,7 +205,7 @@ Scenario Outline: Validate Phone field length error handling
 	And Retrieve booked slots for room
 	And Prepare user details with 'Phone' with length as '<Phone>'
 	And I click ‘Book this room’ button for selected room
-	And Select '2' day stay on calendar in one of the next months
+	And Select '2' day stay on calendar in starting from '2' months ahead
 	And Input personal details into form
 	And Click on ‘Book’ button on room form
 	Then Check that error message is 'present'

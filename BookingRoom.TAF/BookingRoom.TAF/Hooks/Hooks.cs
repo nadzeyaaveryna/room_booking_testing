@@ -1,7 +1,7 @@
 ﻿using BoDi;
 using BookingRoom.Core.Configuration;
 using BookingRoom.Core.Utils;
-using BookingRoom.TAF.Support;
+using BookingRoom.Tests.Support;
 using BookingRoom.UI.Drivers;
 using Microsoft.Playwright;
 using NUnit.Framework;
@@ -10,7 +10,7 @@ using BrowserType = BookingRoom.UI.Drivers.BrowserType;
 
 [assembly: Parallelizable(ParallelScope.Fixtures)]
 
-namespace BookingRoom.TAF.Hooks
+namespace BookingRoom.Tests.Hooks
 {
     [Binding]
     public class Hooks

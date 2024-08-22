@@ -8,7 +8,7 @@ The codebase is organized into multiple projects, each serving a specific purpos
 
 - **BookingRoom.API**: Contains API controllers for handling room bookings, room reports, and base API functionalities. Includes response models for room and room reports.
 - **BookingRoom.Core**: Provides the core functionalities, including business objects for persons, rooms, and time slots, configuration settings, utility functions, and logging mechanisms.
-- **BookingRoom.TAF**: The main test automation framework project, containing feature files for BDD scenarios, step definitions for mapping the steps in feature files to C# methods, and support utilities like screenshot helpers.
+- **BookingRoom.Tests**: The main test automation framework project, containing feature files for BDD scenarios, step definitions for mapping the steps in feature files to C# methods, and support utilities like screenshot helpers.
 - **BookingRoom.UI**: Contains the UI drivers and helpers required for UI test automation, including browser factory, waiting helpers, and page object models for various pages and components in the UI.
 
 ## Tools Used in the Solution
@@ -25,14 +25,39 @@ The solution utilizes several tools and libraries, including but not limited to:
 - **Business Objects (`BookingRoom.Core/BusinessObjects`)**: Defines the core entities like `Person`, `Room`, and `TimeSlot`, along with their management logic.
 - **Configuration (`BookingRoom.Core/Configuration`)**: Manages application configuration settings.
 - **Utils (`BookingRoom.Core/Utils`)**: Provides utility functions including date/time helpers, enum helpers, string generation helpers, and a test context helper for managing test execution context.
-- **Features (`BookingRoom.TAF/Features`)**: Contains Gherkin feature files defining BDD scenarios for testing the room booking system.
-- **Step Definitions (`BookingRoom.TAF/StepDefinitions`)**: Implements step definitions for the steps outlined in the feature files, binding them to actual test code.
+- **Features (`BookingRoom.Tests/Features`)**: Contains Gherkin feature files defining BDD scenarios for testing the room booking system.
+- **Step Definitions (`BookingRoom.Tests/StepDefinitions`)**: Implements step definitions for the steps outlined in the feature files, binding them to actual test code.
 - **UI Pages (`BookingRoom.UI/Pages`)**: Implements the Page Object Model (POM) pattern for UI elements, facilitating easier UI test automation.
 
-## How to Run the Code
+#### Tests Configuration
 
-1. Ensure you have .NET Core SDK installed on your machine.
-2. Open the solution file `BookingRoom.TAF/BookingRoom.TAF.sln` in Visual Studio or another compatible IDE.
-3. Restore NuGet packages to resolve all dependencies.
-4. Build the solution to ensure everything compiles correctly.
-5. To run the tests, navigate to the Test Explorer in your IDE and run all or select specific tests to execute.
+Development configuration for test env is in: [BookingRoom.Core/appsettings.json]
+
+#### How to execute tests 
+
+## Prerequisites 
+
+- `.NET SDK`: Make sure you have the .NET SDK installed. You can download it from https://dotnet.microsoft.com/download.
+- Visual Studio, VS Code or .NET CLI (.NET CLI is included with the .NET SDK).
+
+## Test Execution
+
+1. Open Terminal/CMD: Open a terminal or command prompt and navigate to project directory located in [`../room_booking_testing/BookingRoom.TAF`].
+
+2 Restore Dependencies using command:
+
+ ```dotnet restore ```
+
+3. Build the Project using command:
+
+ ```dotnet build ```
+
+4. Install Playwright browsers using PowerShell command: 
+
+ ```pwsh BookingRoom.TAF/bin/Debug/net6.0/playwright.ps1 install ```
+
+5. Execute Tests:
+
+ ```dotnet test ```
+
+This command will discover and run all the tests in your project.

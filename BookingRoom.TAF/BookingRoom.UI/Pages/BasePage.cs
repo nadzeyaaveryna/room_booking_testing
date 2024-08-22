@@ -6,7 +6,7 @@ namespace BookingRoom.UI.Pages
     {
         protected readonly IPage Page;
 
-        public abstract string Url { get; }
+        public abstract string? Url { get; }
 
         protected BasePage(IPage page)
         {
