@@ -1,12 +1,11 @@
 using BookingRoom.API.Responses;
-using BookingRoom.Core.BusinessObjects;
 using BookingRoom.Core.Utils.TestsContext;
 using BookingRoom.UI.Pages.BookPage;
 using BookingRoom.UI.Pages.BookPage.Components;
 using Microsoft.Playwright;
 using NUnit.Framework;
 
-namespace BookingRoom.TAF.StepDefinitions
+namespace BookingRoom.Tests.StepDefinitions
 {
     [Binding]
     public class BookingRoomSteps

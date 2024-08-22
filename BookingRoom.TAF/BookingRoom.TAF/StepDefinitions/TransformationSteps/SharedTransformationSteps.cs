@@ -1,4 +1,4 @@
-﻿namespace BookingRoom.TAF.StepDefinitions.TransformationSteps
+﻿namespace BookingRoom.Tests.StepDefinitions.TransformationSteps
 {
     [Binding]
     public class SharedTransformationSteps

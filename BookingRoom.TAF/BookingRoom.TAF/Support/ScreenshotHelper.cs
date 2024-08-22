@@ -1,8 +1,7 @@
-﻿using BookingRoom.Core.Configuration;
-using BookingRoom.Core.Constants;
+﻿using BookingRoom.Core.Constants;
 using Microsoft.Playwright;
 
-namespace BookingRoom.TAF.Support
+namespace BookingRoom.Tests.Support
 {
     public static class ScreenshotHelper
     {
