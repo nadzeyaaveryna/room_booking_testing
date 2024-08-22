@@ -1,5 +1,6 @@
 ﻿using BoDi;
 using BookingRoom.API.ApiControllers;
+using BookingRoom.API.Responses;
 using BookingRoom.Core.BusinessObjects;
 using BookingRoom.Core.BusinessObjects.TimeSlot;
 using BookingRoom.Core.Constants;
@@ -30,8 +31,9 @@ namespace BookingRoom.Tests.StepDefinitions.ApiSteps
             Assert.That(apiContext, Is.Not.Null, "API Context is not registered is object container.");
 
             var roomReport = await new RoomReportApi(apiContext).GetRoomReportAsync(room.Index + 1);
+            Assert.That(roomReport, Is.Not.Null.Or.Empty, "Rooms list should not be empty. ");
 
-            foreach (var roomReportItem in roomReport.Report)
+            foreach (var roomReportItem in roomReport?.Report)
             {
                 room.BookedSlots.Add(new TimeSlot(
                     roomReportItem.Start.ParseDateTime(DateTimeFormats.DateYearMonthDayFormat),
@@ -48,9 +50,9 @@ namespace BookingRoom.Tests.StepDefinitions.ApiSteps
             var apiContext = _objectContainer.Resolve<IAPIRequestContext>();
 
             var rooms = await new RoomApi(apiContext).GetRoomReportAsync();
-            if (rooms == null) throw new ArgumentNullException(nameof(rooms));
+            Assert.That(rooms, Is.Not.Null.Or.Empty, "Rooms list should not be empty. ");
 
-            TestContextVariable.ExpectedRoom.Set(rooms.RoomsList.First(el => el.RoomId.Equals(room.Index + 1)));
+            TestContextVariable.ExpectedRoom.Set(rooms?.RoomsList.First(el => el.RoomId.Equals(room.Index + 1)));
         }
 
     }

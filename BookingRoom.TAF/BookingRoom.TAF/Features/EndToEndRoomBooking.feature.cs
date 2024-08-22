@@ -160,7 +160,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("I click ‘Book this room’ button for selected room", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 21
- testRunner.And("Select \'3\' day stay on calendar in current month", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Select \'3\' day stay on calendar in starting from \'0\' months ahead", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 22
  testRunner.And("Input personal details into form", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
