@@ -7,7 +7,7 @@ using BookingRoom.UI.Pages.BookPage.Components;
 using Microsoft.Playwright;
 using NUnit.Framework;
 
-namespace BookingRoom.Test.StepDefinitions
+namespace BookingRoom.Tests.StepDefinitions
 {
     [Binding]
     public class RoomBookingFormSteps

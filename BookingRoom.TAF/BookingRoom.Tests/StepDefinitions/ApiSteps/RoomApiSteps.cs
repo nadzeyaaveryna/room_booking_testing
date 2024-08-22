@@ -8,7 +8,7 @@ using BookingRoom.Core.Utils.TestsContext;
 using Microsoft.Playwright;
 using NUnit.Framework;
 
-namespace BookingRoom.Test.StepDefinitions.ApiSteps
+namespace BookingRoom.Tests.StepDefinitions.ApiSteps
 {
     [Binding]
     public class RoomApiSteps

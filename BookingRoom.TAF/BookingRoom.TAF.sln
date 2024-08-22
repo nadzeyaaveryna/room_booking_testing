@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35027.167
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookingRoom.Test", "BookingRoom.TAF\BookingRoom.Test.csproj", "{EC4BE82C-477C-4627-AB1F-430848E0E691}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookingRoom.Tests", "BookingRoom.Tests\BookingRoom.Tests.csproj", "{EC4BE82C-477C-4627-AB1F-430848E0E691}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookingRoom.Core", "BookingRoom.Core\BookingRoom.Core.csproj", "{7A8EE021-0565-46C7-9DDC-67D86E94EE49}"
 EndProject
