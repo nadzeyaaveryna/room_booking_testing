@@ -11,7 +11,7 @@ namespace BookingRoom.Tests.Support
         /// <param name="page">Playwright page</param>
         /// <param name="testName">test name</param>
         /// <param name="directory">directory</param>
-        public static async Task Screenshot(this IPage page, string testName, string directory = null)
+        public static async Task Screenshot(this IPage page, string testName, string directory)
         {
             directory ??= Directory.GetCurrentDirectory();
 
