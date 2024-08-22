@@ -9,7 +9,7 @@ using BookingRoom.UI.Pages.BookPage.Components;
 using Microsoft.Playwright;
 using NUnit.Framework;
 
-namespace BookingRoom.Tests.StepDefinitions
+namespace BookingRoom.Test.StepDefinitions
 {
     [Binding]
     public class RoomCalendarSteps

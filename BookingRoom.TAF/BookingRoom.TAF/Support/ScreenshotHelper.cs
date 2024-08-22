@@ -1,7 +1,7 @@
 ﻿using BookingRoom.Core.Constants;
 using Microsoft.Playwright;
 
-namespace BookingRoom.Tests.Support
+namespace BookingRoom.Test.Support
 {
     public static class ScreenshotHelper
     {

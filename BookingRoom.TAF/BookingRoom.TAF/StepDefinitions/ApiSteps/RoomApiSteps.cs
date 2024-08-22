@@ -1,6 +1,5 @@
 ﻿using BoDi;
 using BookingRoom.API.ApiControllers;
-using BookingRoom.API.Responses;
 using BookingRoom.Core.BusinessObjects;
 using BookingRoom.Core.BusinessObjects.TimeSlot;
 using BookingRoom.Core.Constants;
@@ -9,7 +8,7 @@ using BookingRoom.Core.Utils.TestsContext;
 using Microsoft.Playwright;
 using NUnit.Framework;
 
-namespace BookingRoom.Tests.StepDefinitions.ApiSteps
+namespace BookingRoom.Test.StepDefinitions.ApiSteps
 {
     [Binding]
     public class RoomApiSteps
