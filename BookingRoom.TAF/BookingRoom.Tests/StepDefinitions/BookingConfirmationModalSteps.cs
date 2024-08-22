@@ -6,7 +6,7 @@ using BookingRoom.UI.Pages.BookPage;
 using Microsoft.Playwright;
 using NUnit.Framework;
 
-namespace BookingRoom.Test.StepDefinitions
+namespace BookingRoom.Tests.StepDefinitions
 {
     [Binding]
     public class BookingConfirmationModalSteps
