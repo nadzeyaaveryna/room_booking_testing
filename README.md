@@ -44,7 +44,7 @@ Development configuration for test env is in: [BookingRoom.Core/appsettings.json
 
 1. Open Terminal/CMD: Open a terminal or command prompt and navigate to project directory located in [`../room_booking_testing/BookingRoom.TAF`].
 
-2 Restore Dependencies using command:
+2. Restore Dependencies using command:
 
  ```dotnet restore ```
 
